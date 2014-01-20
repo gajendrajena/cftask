@@ -1,0 +1,49 @@
+- model_class = TaskList
+
+.container-fluid
+  .row-fluid
+    #myCarousel.carousel.slide
+      %ol.carousel-indicators
+        - @task_lists.each do |tasklist_i|
+          %li.active{"data-slide-to" => "#{@task_lists.to_a.index(tasklist_i)}", "data-target" => "#myCarousel"}
+      .carousel-inner.grayBG
+        - @task_lists.each do |tasklist_i|
+          .item{class: "#{'active' if tasklist_i == @task_lists.first}"}
+            %ul.thumbnails
+              - tasklist_i.each do |task_list|
+
+                %li.span2.tasklist
+                  %a{href: task_list_path(task_list) }
+                    .caption
+                    .thumbnail
+                      %h5= task_list.title
+                      %h6= task_list.description
+                      - task_list.tasks.limit(5).each do |task|
+                        %h6= task.title
+      %a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"} ‹
+      %a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"} ›
+
+
+-# .page-header
+-#   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+-# %table.table.table-striped
+-#   %thead
+-#     %tr
+-#       %th= model_class.human_attribute_name(:id)
+-#       %th= model_class.human_attribute_name(:title)
+-#       %th= model_class.human_attribute_name(:description)
+-#       %th= model_class.human_attribute_name(:created_at)
+-#       %th=t '.actions', :default => t("helpers.actions")
+-#   %tbody 
+-#     - @task_lists.each do |task_list|
+-#       %tr
+-#         %td= link_to task_list.id, task_list_path(task_list)
+-#         %td= task_list.title
+-#         %td= task_list.description
+-#         %td=l task_list.created_at
+-#         %td
+-#           = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_list_path(task_list), :class => 'btn btn-mini'
+-#           = link_to t('.destroy', :default => t("helpers.links.destroy")), task_list_path(task_list), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+-# = link_to t('.new', :default => t("helpers.links.new")), new_task_list_path, :class => 'btn btn-primary'
+
