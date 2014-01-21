@@ -1,27 +1,66 @@
 - model_class = TaskList
 
+
 .container-fluid
   .row-fluid
-    #myCarousel.carousel.slide
-      %ol.carousel-indicators
-        - @task_lists.each do |tasklist_i|
-          %li.active{"data-slide-to" => "#{@task_lists.to_a.index(tasklist_i)}", "data-target" => "#myCarousel"}
-      .carousel-inner.grayBG
-        - @task_lists.each do |tasklist_i|
-          .item{class: "#{'active' if tasklist_i == @task_lists.first}"}
-            %ul.thumbnails
-              - tasklist_i.each do |task_list|
+    .bs-example.bs-example-tabs
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a.collapsed{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapseOne"}
+              Hello World What you Doing(click to know more)
+        #collapseOne.panel-collapse.collapse{style: "height: 0px;"}
+          .panel-body
+            %p Description 
+            %p Hello World!!!
+            %p 
+        %br/
+        %br/
+      .clearfix
+      %ul#myTab.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", href: "#tasks"} Tasks
+        %li
+          %a{"data-toggle" => "tab", href: "#workspace"} Workspace
+        %li
+          %a{"data-toggle" => "tab", href: "#chat"} Chat
+      #myTabContent.tab-content
+        #tasks.tab-pane.fade.in.active
+          #myCarousel.carousel.slide
+            %ol.carousel-indicators
+              - @task_lists.each do |tasklist_i|
+                %li.active{"data-slide-to" => "#{@task_lists.to_a.index(tasklist_i)}", "data-target" => "#myCarousel"}
+            .carousel-inner
+              - @task_lists.each do |tasklist_i|
+                .item{class: "#{'active' if tasklist_i == @task_lists.first}"}
+                  %ul.thumbnails
+                    - tasklist_i.each do |task_list|
+                      %li.span2
+                        .caption
+                          %a{href: task_list_path(task_list) }= task_list.title
+                        .thumbnail.tasklist
+                          %h6= task_list.description
+                          .taskrow
+                            - task_list.tasks.limit(5).each do |task|
+                              %a.btn.btn-default.btn-lg.block{href: task_url(task)}= task.title
+                            .row.rightAlign
+                              %a{href: task_list_path(task_list)}
+                                Show
+                                %span.icon.icon-hand-right
+                              %a{href: edit_task_list_path(task_list)}
+                                Edit
+                                %span.icon.icon-edit
+                          = link_to "Add Task", new_task_path
+              .tasklist.thumbnail.newTaskList= link_to t('.new', :default => t("helpers.links.new")), new_task_list_path
+            %a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"} ‹
+            %a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"} ›
+        #workspace.tab-pane.fade
+          %p Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+        #chat.tab-pane.fade
+          %p Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
 
-                %li.span2.tasklist
-                  %a{href: task_list_path(task_list) }
-                    .caption
-                    .thumbnail
-                      %h5= task_list.title
-                      %h6= task_list.description
-                      - task_list.tasks.limit(5).each do |task|
-                        %h6= task.title
-      %a.left.carousel-control{"data-slide" => "prev", href: "#myCarousel"} ‹
-      %a.right.carousel-control{"data-slide" => "next", href: "#myCarousel"} ›
+
+    
 
 
 -# .page-header

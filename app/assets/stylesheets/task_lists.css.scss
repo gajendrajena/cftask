@@ -1,31 +1,129 @@
 // Place all the styles related to the task_lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.tasklist{
-  background: #ddd;
+.tasklist {
+  background: #390;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  a.btn{
+    color:#aaa;
+  }
+  a{
+    color: #fff;
+  }
+  .row{
+    margin: 10px -8px;
+    border-top: 1px solid #aaa;
+    a{
+      color: #aaa;
+    }
+  }
+}
+.taskrow{
+  background: #fff;
+  border-radius: 5px;
+  padding: 8px;
+}
+.thumbnails{
+  // width: 80%;
+}
+.newTaskList{
+  top: 10%;
+  position: absolute;
+  right: 6%;
+}
+.newTaskList a {
+  display: block;
+  color: #fff;
+  padding: 65px 25px;
 }
 .grayBG{
   background: #eee;
+}
+.carousel-indicators .active {
+  background-color: #aaa;
 }
 .carousel-indicators {
   bottom: -22px;
   position: absolute;
   left: 0%;
   right: 0%;
-  top: 101%;
+  top: 92%;
   z-index: 15;
-  width: auto;
+  width: 15%;
   padding-left: 0;
-  margin-left: 30%;
+  margin-left: 43%;
   margin-right: 30%;
   text-align: center;
   list-style: none;
-  background: rgba(205,205,205, 0.6);
-
   li {
+    background: #DDD;
     width: 20px;
     height: 20px;
     margin-left: 10px;
     border-radius: 10px;
   }
+}
+
+.bs-example {
+  margin-left: 0;
+  margin-right: 0;
+  border : 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 0 -21px;
+  background-color: #fff;
+  h4{
+    background-color: #fafafa;
+  }
+}
+
+.bs-example:after {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#centerDiv{
+  margin: 60px 12%;
+  background: #fff;
+}
+.carousel-control{
+  top: 96%;
+  left: 35%;
+}
+.carousel-control.right{
+  right: 35%;
+}
+a:hover{
+  text-decoration: none;
+}
+.tab-content {
+  height: 350px;
+}
+body{
+  background: #eee;
+}
+.block{
+  display: block;
+  margin: 3px 10px;
+}
+.bs-example + .highlight {
+  margin-top: -16px;
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.rightAlign{
+  text-align: right;
 }

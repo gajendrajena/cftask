@@ -4,7 +4,7 @@ class TaskListsController < ApplicationController
   # GET /task_lists
   # GET /task_lists.json
   def index
-    @task_lists = TaskList.all.each_slice(6)
+    @task_lists = TaskList.all.each_slice(5)
   end
 
   # GET /task_lists/1
